@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projeto.vitoria.enums.TipoCliente;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -27,9 +28,13 @@ public class Cliente {
     @CollectionTable(name="TELEFONE")
     private Set<String> telefone = new HashSet<>();
 
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
+
     public Cliente(){}
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
+        super();
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -91,6 +96,22 @@ public class Cliente {
 
     public void setTelefone(Set<String> telefone) {
         this.telefone = telefone;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public void setTipoCliente(Integer tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override

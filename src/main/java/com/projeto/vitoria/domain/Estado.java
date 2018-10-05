@@ -3,12 +3,13 @@ package com.projeto.vitoria.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Estado {
+public class Estado implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -23,6 +24,7 @@ public class Estado {
     public Estado(){}
 
     public Estado(Integer id, String nome) {
+        super();
         this.id = id;
         this.nome = nome;
     }

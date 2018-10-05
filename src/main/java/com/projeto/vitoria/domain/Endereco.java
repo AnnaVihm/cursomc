@@ -3,10 +3,11 @@ package com.projeto.vitoria.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Endereco {
+public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,6 +31,7 @@ public class Endereco {
     public Endereco(){}
 
     public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente, Cidade cidade) {
+        super();
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
