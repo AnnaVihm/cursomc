@@ -1,13 +1,8 @@
 package com.projeto.vitoria;
 
-import com.projeto.vitoria.domain.Categoria;
-import com.projeto.vitoria.domain.Cidade;
-import com.projeto.vitoria.domain.Estado;
-import com.projeto.vitoria.domain.Produto;
-import com.projeto.vitoria.repositorys.CategoriaRepository;
-import com.projeto.vitoria.repositorys.CidadeRepository;
-import com.projeto.vitoria.repositorys.EstadoRepository;
-import com.projeto.vitoria.repositorys.ProdutoRepository;
+import com.projeto.vitoria.domain.*;
+import com.projeto.vitoria.enums.TipoCliente;
+import com.projeto.vitoria.repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,6 +28,12 @@ public class VitoriaApplication implements CommandLineRunner {
 
 	@Autowired
 	private CidadeRepository cidadeRepository;
+
+	@Autowired
+	private ClienteRepository clienteRepository;
+
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -68,6 +69,16 @@ public class VitoriaApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
+		Cliente cli1 = new Cliente(null,"Vinicius Cardoso Martins","viniciusCardosoMartins@teleworm.us","714.472.743-50", TipoCliente.PESSOAFISICA);
+		cli1.getTelefone().addAll(Arrays.asList("(92) 9644-7180", "(85) 9456-5646"));
+
+		Endereco end1 = new Endereco(null, "Rua Antônio Reis", "124","Bloco c, Quadra 1","Conjunto Palmeiras","69039-150", cli1, c1);
+		Endereco end2 = new Endereco(null, "Rua Um", "387","Quadra 1","Goibeiras","78715-566", cli1, c2);
+
+		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(end1,end2));
 	}
 
 }

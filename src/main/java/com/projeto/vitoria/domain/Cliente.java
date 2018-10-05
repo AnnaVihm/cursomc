@@ -2,19 +2,26 @@ package com.projeto.vitoria.domain;
 
 import com.projeto.vitoria.enums.TipoCliente;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
 public class Cliente {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
     private String cpfOuCnpj;
     private Integer tipoCliente;
 
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name="TELEFONE")
     private Set<String> telefone = new HashSet<>();
 
     public Cliente(){}
