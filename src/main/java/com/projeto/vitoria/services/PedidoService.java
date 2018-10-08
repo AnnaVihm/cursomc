@@ -1,20 +1,22 @@
 package com.projeto.vitoria.services;
 
-import com.projeto.vitoria.domain.Categoria;
-import com.projeto.vitoria.repositorys.CategoriaRepository;
+import java.util.Optional;
+
+import com.projeto.vitoria.domain.Pedido;
+import com.projeto.vitoria.repositorys.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
-public class CategoriaService {
+public class PedidoService {
 
-    @Autowired //mecanismo de injeção de dependencias
-    private CategoriaRepository categoriaRepository;
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
-    public Categoria buscar(Integer id) {
-        Optional<Categoria> categoria = categoriaRepository.findById(id);
-        return categoria.orElse(null);
+    public Pedido buscar(Integer id) {
+        Optional<Pedido> cliente= pedidoRepository.findById(id);
+        return cliente.orElse(null);
     }
+
 }

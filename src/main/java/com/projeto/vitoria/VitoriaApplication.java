@@ -78,7 +78,7 @@ public class VitoriaApplication implements CommandLineRunner {
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
 		Cliente cli1 = new Cliente(null,"Vinicius Cardoso Martins","viniciusCardosoMartins@teleworm.us","714.472.743-50", TipoCliente.PESSOAFISICA);
-		cli1.getTelefone().addAll(Arrays.asList("(92) 9644-7180", "(85) 9456-5646"));
+		cli1.getTelefones().addAll(Arrays.asList("(92) 9644-7180", "(85) 9456-5646"));
 
 		Endereco end1 = new Endereco(null, "Rua Antônio Reis", "124","Bloco c, Quadra 1","Conjunto Palmeiras","69039-150", cli1, c1);
 		Endereco end2 = new Endereco(null, "Rua Um", "387","Quadra 1","Goibeiras","78715-566", cli1, c2);
